@@ -10,7 +10,7 @@ import utils
 
 configs = config.Config()
 model = vision_transformer.VisionTransformer(configs.num_head, configs.num_class, configs.batch_size)
-
+model.cuda()
 train_transforms = data_util.get_transforms(is_train=True)
 val_transforms = data_util.get_transforms(is_train=False)
 

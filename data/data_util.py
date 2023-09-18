@@ -50,14 +50,14 @@ def get_transforms(is_train, *args):
         )
         '''
         return transforms.Compose([
-                transforms.PILToTensor(),
+                transforms.ToTensor(),
                 transforms.RandomResizedCrop(size=(224,224)),
                 transforms.RandomHorizontalFlip(p=0.5),
             ])
     # test dataset transform
     else :
         return transforms.Compose([
-            transforms.PILToTensor(),
+            transforms.ToTensor(),
             transforms.Resize(256),
             transforms.CenterCrop(224),
         ])
