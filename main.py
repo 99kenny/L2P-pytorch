@@ -14,7 +14,7 @@ model.cuda()
 train_transforms = data_util.get_transforms(is_train=True)
 val_transforms = data_util.get_transforms(is_train=False)
 
-train_datasets, val_datasets = data_util.get_dataset("notMNIST", train_transforms, val_transforms, data_path=configs.data_path, download=False)
+train_datasets, val_datasets = data_util.get_dataset(configs.datasets, train_transforms, val_transforms, data_path=configs.data_path, download=True)
 
 train_loader = DataLoader(
     train_datasets,

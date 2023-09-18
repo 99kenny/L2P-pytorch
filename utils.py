@@ -29,7 +29,7 @@ def train(train_loader, model, criterion, optimizer, epoch, writer):
         
         output = output.float()
         losses += loss.float()
-        accs += accuracy(output.data, target)[0]
+        accs += accuracy(output.data, target)
         
     losses /= len(train_loader)
     accs /= len(train_loader)
@@ -58,7 +58,7 @@ def validate(val_loader, model, criterion, epoch, writer):
             loss = loss.float()
             
             # measure accuracy and record loss
-            accs += accuracy(output.data, target)[0]
+            accs += accuracy(output.data, target)
             losses += loss
             
         losses /= len(val_loader)

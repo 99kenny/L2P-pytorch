@@ -9,9 +9,9 @@ class Config:
         self.depth = 12
         self.num_head = 12
         
-        self.datasets = "CIFAR100"
-        self.data_path = "C:/Users/99san/Workspace/L2P/file"
-        self.summary_path = "C:/Users/99san/Workspace/L2P/summary"
+        self.datasets = "CIFAR10"
+        self.data_path = "/file"
+        self.summary_path = "/summary"
         
         self.lr = 0.001
         self.lr_momentum = 0.9
