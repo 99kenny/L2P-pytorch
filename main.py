@@ -29,7 +29,7 @@ val_loader = DataLoader(
     shuffle = True,
 )
 
-writer = SummaryWriter()
+writer = SummaryWriter(configs.summary_path)
 
 criterion = nn.CrossEntropyLoss().cuda()
 optimizer = torch.optim.SGD(model.parameters(), configs.lr, weight_decay=configs.weight_decay)
