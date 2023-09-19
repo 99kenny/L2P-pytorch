@@ -4,6 +4,7 @@ from urllib.request import urlretrieve
 import zipfile
 from torchvision.transforms.functional import to_pil_image
 import matplotlib.pyplot as plt
+
 # dataset name, transform_train, transform_val, data_path
 def get_dataset(dataset, transform_train, transform_val, data_path, download):
     if dataset == "CIFAR10":

@@ -1,20 +1,21 @@
+import torch
 from torch.utils.data import DataLoader
 from torch.utils.tensorboard import SummaryWriter 
-import config
-import torch
-from data import data_util
-from layers import vision_transformer
-from data import data_util
 import torch.nn as nn
-import utils
 
-configs = config.Config()
-model = vision_transformer.VisionTransformer(configs.num_head, configs.num_class, configs.batch_size)
+from config import *
+from data import *
+from utils import *
+from vision_transformer import *
+
+configs = Config()
+model = VisionTransformer(configs.num_head, configs.num_class, configs.batch_size)
 model.cuda()
-train_transforms = data_util.get_transforms(is_train=True)
-val_transforms = data_util.get_transforms(is_train=False)
 
-train_datasets, val_datasets = data_util.get_dataset(configs.datasets, train_transforms, val_transforms, data_path=configs.data_path, download=True)
+train_transforms = get_transforms(is_train=True)
+val_transforms = get_transforms(is_train=False)
+
+train_datasets, val_datasets = get_dataset(configs.datasets, train_transforms, val_transforms, data_path=configs.data_path, download=True)
 
 train_loader = DataLoader(
     train_datasets,
@@ -22,7 +23,7 @@ train_loader = DataLoader(
     shuffle = True,
 )
 
-val_loader = torch.utils.data.DataLoader(
+val_loader = DataLoader(
     train_datasets,
     batch_size = configs.batch_size,
     shuffle = True,
@@ -40,9 +41,9 @@ if not torch.cuda.is_available():
 
 for epoch in range(configs.start_epoch, configs.epochs):
     print("current lr {:.5e}".format(optimizer.param_groups[0]['lr']))
-    utils.train(train_loader, model, criterion, optimizer, epoch, writer)
+    train(train_loader, model, criterion, optimizer, epoch, writer)
     lr_scheduler.step()
-    avg_acc = utils.validate(val_loader, model, criterion, epoch)
+    avg_acc = validate(val_loader, model, criterion, epoch)
     
     is_best = avg_acc > best_acc
     if is_best:
