@@ -1,22 +1,22 @@
-class Config:
-    def __init__(self):
-        self.num_class = 10
-        self.batch_size = 8
-        self.img_size = 224
-        self.patch_size = 16
-        self.in_channels = 3
-        self.embed_dim = 768
-        self.depth = 12
-        self.num_head = 12
+import argparse
 
-        self.datasets = "CIFAR10"
-        self.data_path = "C:/Windows/System32/L2P-pytorch/file"
-        self.summary_path = "C:/Windows/System32/L2P-pytorch/summary"
+def get_args_parser(parser):
+    parser.add_argument('--model_name', default = "vit_B_16")
+    parser.add_argument('--num_class', default = 10)
+    parser.add_argument('--batch_size', default = 128)
+    parser.add_argument('--img_size', default = 224)
+    parser.add_argument('--patch_size', default = 16)
+    parser.add_argument('--in_channels', default = 3)
+    parser.add_argument('--depth', default = 12)
+    parser.add_argument('--num_head', default = 12)
+    parser.add_argument('--datasets', default = "CIFAR10")
+    parser.add_argument('--data_path', default = "/data")
+    parser.add_argument('--summary_path', default = "/summary")
+    parser.add_argument('--lr', default = 0.001)
+    parser.add_argument('--lr_momentum', default = 0.9)
+    parser.add_argument('--weight_decay', default = 5e-4)
+    parser.add_argument('--start_epoch', default = 0)
+    parser.add_argument('--epochs', default = 100)
 
-        self.lr = 0.001
-        self.lr_momentum = 0.9
-        self.weight_decay = 5e-4
 
-        self.start_epoch = 0
-        self.epochs = 100
     

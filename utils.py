@@ -1,5 +1,14 @@
 import torch
 from tqdm import tqdm
+import requests
+
+def download_pretrained(path:str, model_name:str="vit_B_16"):
+    if model_name == "vit_B_16":
+        url = "https://github.com/lukemelas/PyTorch-Pretrained-ViT/releases/download/0.0.2/B_16_imagenet1k.pth"
+        print("start downloading {}...".format(model_name))
+        r = requests.get(url, allow_redirects=True)
+        open('{}/ViT_B_16.npz'.format(path), 'wb').write(r.content)
+    
 
 def accuracy(output, y):
     pred = output.topk(k=1).indices
