@@ -7,7 +7,9 @@ def download_pretrained(path:str, model_name:str="vit_B_16"):
         url = "https://github.com/lukemelas/PyTorch-Pretrained-ViT/releases/download/0.0.2/B_16_imagenet1k.pth"
         print("start downloading {}...".format(model_name))
         r = requests.get(url, allow_redirects=True)
-        open('{}/ViT_B_16.npz'.format(path), 'wb').write(r.content)
+        open('{}/ViT_B_16.pth'.format(path), 'wb').write(r.content)
+    
+    return '{}/ViT_B_16.pth'.format(path)
     
 
 def accuracy(output, y):
@@ -58,12 +60,11 @@ def validate(val_loader, model, criterion, epoch, writer):
     with torch.no_grad():
         for i, (input, target) in tqdm(enumerate(val_loader),desc="Epoch:{} Val:".format(epoch),total=len(val_loader)):
             target = target.cuda()
-            input_var = input.cuda()
-            target_var = target.cuda()
+            input = input.cuda()
 
             # compute output
-            output = model(input_var)
-            loss = criterion(output, target_var)
+            output = model(input)
+            loss = criterion(output, target)
             output = output.float()
             loss = loss.float().item()
 

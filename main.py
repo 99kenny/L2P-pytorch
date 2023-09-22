@@ -63,7 +63,6 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser("ViT")
     
     # parser 
-    
     args = parser.parse_args()
     get_args_parser(args)
     main(args)

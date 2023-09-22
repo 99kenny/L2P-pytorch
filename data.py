@@ -9,19 +9,19 @@ import matplotlib.pyplot as plt
 def get_dataset(dataset, transform_train, transform_val, data_path, download):
     if dataset == "CIFAR10":
         train = datasets.CIFAR10(data_path, train=True, download=download, transform=transform_train)
-        val = datasets.CIFAR10(data_path, train=False, download=download, transform=transform_train)
+        val = datasets.CIFAR10(data_path, train=False, download=download, transform=transform_val)
     elif dataset == "CIFAR100":
         train = datasets.CIFAR100(data_path, train=True, download=download, transform=transform_train)
-        val = datasets.CIFAR100(data_path, train=False, download=download, transform=transform_train)
+        val = datasets.CIFAR100(data_path, train=False, download=download, transform=transform_val)
     elif dataset == "MNIST":
         train = datasets.MNIST(data_path, train=True, download=download, transform=transform_train)
-        val = datasets.MNIST(data_path, train=False, download=download, transform=transform_train)
+        val = datasets.MNIST(data_path, train=False, download=download, transform=transform_val)
     elif dataset == "Fashion-MNIST":
         train = datasets.FashionMNIST(data_path, train=True, download=download, transform=transform_train)
-        val = datasets.FashionMNIST(data_path, train=False, download=download, transform=transform_train)
+        val = datasets.FashionMNIST(data_path, train=False, download=download, transform=transform_val)
     elif dataset == "SVHN":
         train = datasets.SVHN(data_path, train=True, download=download, transform=transform_train)
-        val = datasets.SVHN(data_path, train=False, download=download, transform=transform_train)
+        val = datasets.SVHN(data_path, train=False, download=download, transform=transform_val)
     elif dataset == "notMNIST":
         root = data_path
         if download:
